@@ -1,0 +1,22 @@
+[package]
+name = "rmpp"
+version = "0.1.0"
+authors = ["Noelle Stern"]
+license = "MIT"
+description = "Precise types for RMP"
+repository = "https://github.com/NoelleStern/rmpp"
+documentation = "https://docs.rs/rmpp"
+readme = "README.md"
+keywords = ["messagepack", "msgpack", "serialization"]
+categories = ["encoding", "parsing"]
+edition = "2024"
+
+[lib]
+crate-type=["cdylib", "rlib"] # If you want to integrate your rust code with javascript we use cdylib
+
+[dependencies]
+rmp = "0.8.14"
+byteorder = "1.5.0"
+serde = { version = "1.0.225", features = ["derive"] }
+serde_json = "1.0.145"
+wasm-bindgen = { version = "0.2.103", features = ["serde-serialize"] }
