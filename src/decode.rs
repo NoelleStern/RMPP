@@ -42,7 +42,7 @@ pub fn unpack_json(data: &[u8], pretty: Option<bool>) -> Result<String, JsValue>
 /// assert_eq!(entry, value);
 /// ```
 pub fn unpack(data: &[u8]) -> Result<MsgPackEntry, MsgPackError> {
-    return Ok( read_value(&mut Cursor::new(data))? );
+    read_value(&mut Cursor::new(data))
 }
 
 /// Reads a MessagePack buffer value and returns a MsgPackEntry object

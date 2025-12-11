@@ -127,41 +127,41 @@ pub fn write_value<W: Write, V: MsgValue>(writer: &mut W, value: &V) -> std::io:
             let bytes = s.as_bytes();
             // Preserving the signature is important
             writer.write_all(&[(bytes.len() as u8) & 0b0001_1111 | 0b1010_0000])?; // Lower 5 bits represent the length
-            writer.write_all(&bytes)?;
+            writer.write_all(bytes)?;
         },
         MsgPackValue::Str8(s) => {
             let bytes = s.as_bytes();
             writer.write_all(&[0xD9])?;
             writer.write_all(&[bytes.len() as u8])?;
-            writer.write_all(&bytes)?;
+            writer.write_all(bytes)?;
         },
         MsgPackValue::Str16(s) => {
             let bytes = s.as_bytes();
             writer.write_all(&[0xDA])?;
             writer.write_all(&(bytes.len() as u16).to_be_bytes())?;
-            writer.write_all(&bytes)?;
+            writer.write_all(bytes)?;
         },
         MsgPackValue::Str32(s) => {
             let bytes = s.as_bytes();
             writer.write_all(&[0xDB])?;
             writer.write_all(&(bytes.len() as u32).to_be_bytes())?;
-            writer.write_all(&bytes)?;
+            writer.write_all(bytes)?;
         },
         // Binary
         MsgPackValue::Bin8(b) => {
             writer.write_all(&[0xC4])?;
             writer.write_all(&[b.len() as u8])?;
-            writer.write_all(&b)?;
+            writer.write_all(b)?;
         },
         MsgPackValue::Bin16(b) => {
             writer.write_all(&[0xC5])?;
             writer.write_all(&(b.len() as u16).to_be_bytes())?;
-            writer.write_all(&b)?;
+            writer.write_all(b)?;
         },
         MsgPackValue::Bin32(b) => {
             writer.write_all(&[0xC6])?;
             writer.write_all(&(b.len() as u32).to_be_bytes())?;
-            writer.write_all(&b)?;
+            writer.write_all(b)?;
         },
         // Array
         MsgPackValue::FixArray(values) => {
