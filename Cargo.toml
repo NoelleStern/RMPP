@@ -1,6 +1,6 @@
 [package]
 name = "rmpp"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Noelle Stern"]
 license = "MIT"
 description = "Precise types for RMP"
