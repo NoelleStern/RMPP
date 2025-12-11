@@ -28,8 +28,8 @@ jobs:
       - uses: actions-rust-lang/setup-rust-toolchain@v1
       - uses: actions/setup-node@v4
         with:
-          node-version: '20
-          scope: '@noelle.stern'
+          node-version: "20"
+          scope: "@noelle.stern"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -49,9 +49,9 @@ jobs:
       - uses: actions-rust-lang/setup-rust-toolchain@v1
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          registry-url: 'https://npm.pkg.github.com'
-          scope: '@noelle.stern'
+          node-version: "20"
+          registry-url: "https://npm.pkg.github.com"
+          scope: "@noelle.stern"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
