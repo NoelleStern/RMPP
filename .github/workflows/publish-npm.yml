@@ -1,0 +1,38 @@
+name: Publish to NPM
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
+
+      - run: rustup component add clippy
+      - run: cargo install cargo-machete
+
+      - run: cargo clippy --all-targets --all-features -- -D warnings
+      - run: cargo machete
+
+  publish-npm:
+    needs: lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
+
+      - run: cargo install wasm-pack
+      - run: wasm-pack build --release --target bundler
+
+      - name: Publish to npm
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          cd pkg
+          npm publish --access public
