@@ -30,12 +30,11 @@ jobs:
         with:
           node-version: "24"
           registry-url: 'https://registry.npmjs.org'
-          scope: "@noelle.stern"
 
       - run: cargo install wasm-pack
       - run: wasm-pack build --release --target bundler
 
       - name: Publish to NPM
-        run: npm publish ./pkg --access public
+        run: npm publish ./pkg --access public # Setup-node creates .npmrc at root, but pkg has the actual package
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
