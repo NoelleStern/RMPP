@@ -36,7 +36,6 @@ jobs:
       - run: wasm-pack build --release --target bundler
 
       - name: Publish to NPM
-        run: npm publish --access public
-        working-directory: ./pkg
+        run: npm publish ./pkg --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
