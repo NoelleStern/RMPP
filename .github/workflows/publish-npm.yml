@@ -69,7 +69,7 @@ jobs:
       - run: wasm-pack build --release --target bundler
 
       # Edit package.json
-      - run: npm pkg set name="@NoelleStern/RMPP" publishConfig.registry="https://npm.pkg.github.com"
+      - run: npm pkg set name="@NoelleStern/rmpp" publishConfig.registry="https://npm.pkg.github.com" # Package name can no longer contain capital letters!
         working-directory: ./pkg
 
       - name: Publish to GHCR
