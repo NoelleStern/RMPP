@@ -69,10 +69,10 @@ jobs:
       - run: wasm-pack build --release --target bundler
 
       # Edit package.json
-      - run: npm pkg set name="@NoelleStern/RMPP"
+      - run: npm pkg set name="@NoelleStern/RMPP" publishConfig.registry="https://npm.pkg.github.com"
         working-directory: ./pkg
 
-      - name: Publish to NPM
+      - name: Publish to GHCR
         run: npm publish ./pkg # Setup-node creates .npmrc at root, but pkg has the actual package
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
